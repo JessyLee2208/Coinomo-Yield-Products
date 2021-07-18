@@ -5,7 +5,8 @@ import Product from './components/Product';
 import Loader from './components/Loader';
 
 const PageBox = styled.div`
-  width: 1000px;
+  max-width: 1000px;
+  width: auto;
   margin: 18px auto;
 `;
 
@@ -36,14 +37,17 @@ const Subtitle = styled.div`
 `;
 
 const Container = styled.div`
-  width: 940px;
-  display: grid;
-  grid-template-columns: 220px 160px 160px 160px 100px auto;
-  grid-gap: 20px;
+  width: 100%;
+  display: flex;
 
   border-radius: 4px;
-  padding-top: 40px;
-  margin: 0px auto;
+
+  padding: 40px 20px 0 20px;
+  justify-content: space-between;
+  box-sizing: border-box;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const BodyItem = styled.div`
@@ -52,11 +56,25 @@ const BodyItem = styled.div`
   font-family: Roboto, 'Noto Sans TC', Arial, sans-serif;
   font-size: 16px;
   font-weight: 600;
+
+  max-width: 120px;
+  width: 100%;
+`;
+
+const BodyItemName = styled(BodyItem)`
+  max-width: 180px;
+  width: 100%;
+  min-width: 120px;
+`;
+
+const BodyItemIcon = styled(BodyItem)`
+  max-width: 40px;
+  width: 100%;
 `;
 
 function App() {
   const data = useDataCheck();
-  // console.log(data.data.en);
+
   return (
     <PageBox>
       <PageTitle>Coinomo Yield Products</PageTitle>
@@ -64,17 +82,17 @@ function App() {
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore
         magna aliqua.
       </Subtitle>
-      <div>
-        <Container>
-          <BodyItem>Name</BodyItem>
-          <BodyItem>Type</BodyItem>
-          <BodyItem>Flexible</BodyItem>
-          <BodyItem>Minimum</BodyItem>
-          <BodyItem>APY</BodyItem>
-          <BodyItem></BodyItem>
-        </Container>
-      </div>
-      {data?.data ? data.data.en.map((data) => <Product data={data}></Product>) : <Loader></Loader>}
+
+      <Container>
+        <BodyItemName>Name</BodyItemName>
+        <BodyItem>Type</BodyItem>
+        <BodyItem>Flexible</BodyItem>
+        <BodyItem>Minimum</BodyItem>
+        <BodyItem>APY</BodyItem>
+        <BodyItemIcon></BodyItemIcon>
+      </Container>
+
+      {data?.data ? data.data.en.map((data, index) => <Product data={data} key={index}></Product>) : <Loader></Loader>}
     </PageBox>
   );
 }
