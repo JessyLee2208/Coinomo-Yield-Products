@@ -151,22 +151,22 @@ function Product(data) {
     <ProductBox>
       <Container onClick={handleTable}>
         <BodyItemName>{data.data.name}</BodyItemName>
-        <div>
+        <BodyItem>
           <SubItem>Type</SubItem>
           <BodyItem>{data.data.type}</BodyItem>
-        </div>
-        <div>
+        </BodyItem>
+        <BodyItem>
           <SubItem>Flexible</SubItem>
           <BodyItem>Flexible</BodyItem>
-        </div>
-        <div>
+        </BodyItem>
+        <BodyItem>
           <SubItem>Minimum</SubItem>
           <BodyItem>100USDC</BodyItem>
-        </div>
-        <div>
+        </BodyItem>
+        <BodyItem>
           <SubItem>APY</SubItem>
           <BodyItem>{data.data.apr}</BodyItem>
-        </div>
+        </BodyItem>
 
         <BodyItemIcon>
           <span>
